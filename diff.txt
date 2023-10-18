@@ -1,0 +1,37 @@
+S Water shortage has been a serious problem for many years and causes various crises. The land is crushing, overusing the underground water, and many people can’t get enough water, swarming the water cart like thirsty animals. All of these sounds horrible. Climate change, the biggest cause of environmental problems. Earth has become hotter and hotter these years, and the climate is getting extremely hot. No typhoons, less rain, both of them cause water shortages. All in all, the problem above is all because of yourself, and the only solution is also to attend to us. From now on, save water whenever possible, enhance education, and cherish our mother earth. I hope the world will be better.
+A 11 12|||R:VERB:TENSE|||has caused|||REQUIRED|||-NONE-|||0
+A 17 19|||R:OTHER|||being crushed by overuse|||REQUIRED|||-NONE-|||0
+A 19 20|||R:OTHER|||of|||REQUIRED|||-NONE-|||0
+A 25 26|||R:OTHER|||are unable to|||REQUIRED|||-NONE-|||0
+A 26 27|||R:VERB|||access|||REQUIRED|||-NONE-|||0
+A 29 30|||R:VERB|||crowding|||REQUIRED|||-NONE-|||0
+A 30 31|||R:OTHER|||around|||REQUIRED|||-NONE-|||0
+A 32 33|||R:NOUN:NUM|||carts|||REQUIRED|||-NONE-|||0
+A 38 39|||R:DET|||this|||REQUIRED|||-NONE-|||0
+A 42 43|||R:NOUN|||change|||REQUIRED|||-NONE-|||0
+A 43 43|||M:VERB|||is|||REQUIRED|||-NONE-|||0
+A 51 52|||R:VERB|||been getting|||REQUIRED|||-NONE-|||0
+A 55 55|||M:PREP|||in|||REQUIRED|||-NONE-|||0
+A 55 56|||R:ADJ|||recent|||REQUIRED|||-NONE-|||0
+A 57 60|||U:OTHER||||||REQUIRED|||-NONE-|||0
+A 60 62|||R:VERB|||leading|||REQUIRED|||-NONE-|||0
+A 62 62|||M:PREP|||to|||REQUIRED|||-NONE-|||0
+A 63 64|||R:OTHER|||hot|||REQUIRED|||-NONE-|||0
+A 64 65|||R:OTHER|||climates. The lack of|||REQUIRED|||-NONE-|||0
+A 65 66|||R:NOUN|||typhoons|||REQUIRED|||-NONE-|||0
+A 66 67|||R:OTHER|||and reduced|||REQUIRED|||-NONE-|||0
+A 67 68|||R:OTHER|||rainfall|||REQUIRED|||-NONE-|||0
+A 69 72|||R:OTHER|||contribute to|||REQUIRED|||-NONE-|||0
+A 74 77|||R:OTHER|||Ultimately,|||REQUIRED|||-NONE-|||0
+A 78 79|||R:NOUN:NUM|||problems|||REQUIRED|||-NONE-|||0
+A 79 79|||M:VERB|||mentioned|||REQUIRED|||-NONE-|||0
+A 80 81|||R:VERB:SVA|||are|||REQUIRED|||-NONE-|||0
+A 82 83|||R:OTHER|||a result|||REQUIRED|||-NONE-|||0
+A 84 85|||R:OTHER|||our own actions,|||REQUIRED|||-NONE-|||0
+A 90 91|||U:ADV||||||REQUIRED|||-NONE-|||0
+A 92 94|||R:VERB|||address|||REQUIRED|||-NONE-|||0
+A 94 95|||R:OTHER|||them.|||REQUIRED|||-NONE-|||0
+A 98 98|||M:NOUN|||let's|||REQUIRED|||-NONE-|||0
+A 102 103|||R:VERB|||improve|||REQUIRED|||-NONE-|||0
+A 114 115|||R:VERB|||become|||REQUIRED|||-NONE-|||0
+
