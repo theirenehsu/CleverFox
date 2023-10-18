@@ -66,8 +66,8 @@ def choice(text, level):
         response = response['choices'][0]['message']['content']
         # Using errant to compare and produce edited articale
         fixed_sentence = match_tokens_from_errant(text, response)
-        st.write(response)
-        st.write(fixed_sentence)
+        # st.write(response)
+        # st.write(fixed_sentence)
 
         # Display double space format
         print_lines = print_double_space(fixed_sentence)
