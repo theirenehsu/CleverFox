@@ -126,6 +126,7 @@ def match_tokens_from_errant(original, correction):
                 revision = "{+" + cor_w + "+} " + "[-" + sli + "-]"
             # corrected_string[a:(b - 1)] = ""
             for x in range(a, b):
+                st.write(a, b, corrected_essay)
                 corrected_essay[x] = ""
             corrected_essay[b - 1] = revision
         elif a == b:
