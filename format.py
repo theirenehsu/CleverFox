@@ -11,7 +11,7 @@ def web_info():
     # Set format: logo, result, divider inside the result
     st.markdown(
         '''
-        <style> 
+        <style>
         [data-testid="stSidebarNav"] {
                     background-image: url(https://i.imgur.com/Qj5z2Du.png);
                     background-repeat: no-repeat;
@@ -255,7 +255,14 @@ def get_a_line(tokens, limit=68):
             continue
 
         # Add token to line if not out of limit
-        if len(line_pure_text) + word_len <= limit and (i != len(tokens) - 1):
+        token_len = len(tokens)
+        if (i == 0 and i == len(tokens) - 1):
+            line1 += ' ' + text_original if len(line_pure_text) != 0 else text_original
+            line2 += ' ' + text_edit if len(line_pure_text) != 0 else text_edit
+            line_pure_text += ' ' + text if len(line_pure_text) != 0 else text
+            blank = ' ' * (limit - len(line_pure_text))
+            return [line1 + blank, line2 + blank, []]
+        elif len(line_pure_text) + word_len <= limit and (i != len(tokens) - 1):
             line1 += ' ' + text_original if len(line_pure_text) != 0 else text_original
             line2 += ' ' + text_edit if len(line_pure_text) != 0 else text_edit
             line_pure_text += ' ' + text if len(line_pure_text) != 0 else text
@@ -266,20 +273,16 @@ def get_a_line(tokens, limit=68):
 
 
 def print_double_space(fixed_sentence):
+    printed_lines = """"""
     with st.container():
-        printed_lines = """"""
         sent_tokens = diff_tokens(fixed_sentence)
         while sent_tokens:
             return_data = get_a_line(sent_tokens)
             # lines = [return_data[0].replace(' ', '&nbsp;'), return_data[1].replace(' ', '&nbsp;')]
             printed_lines += return_data[0] + '<br>' + return_data[1] + '<br><hr class="dashed">'
             sent_tokens = return_data[2]
+            print(return_data[2])
     st.markdown('<div class="fixed">' + printed_lines + '</div>', unsafe_allow_html=True)
-    return printed_lines
-
-
-if 'click' not in st.session_state:
-    st.session_state.click = False
 
 
 def download_pdf(result):
@@ -288,7 +291,7 @@ def download_pdf(result):
       <head>
         <meta name="pdfkit-page-size" content="Legal"/>
       </head>
-      <style> 
+      <style>
         [class="fixed"] {
             font-family: Courier New;
             width:750px

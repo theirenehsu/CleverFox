@@ -44,7 +44,7 @@ def grammar(text):
         # st.write(fixed_sentence)
 
         # Display double space format
-        print_lines = print_double_space(fixed_sentence)
+        print_double_space(fixed_sentence)
 
         # Explanation
         getExplain(fixed_sentence)

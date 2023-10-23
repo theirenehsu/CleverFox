@@ -67,32 +67,31 @@ def choice(text, level):
         # Using errant to compare and produce edited articale
         fixed_sentence = match_tokens_from_errant(text, response)
         # st.write(response)
-        # st.write(fixed_sentence)
+        st.write(fixed_sentence)
 
         # Display double space format
-        print_lines = print_double_space(fixed_sentence)
+        print_double_space(fixed_sentence)
 
         # Explanation
         getExplain(fixed_sentence)
 
         # Original fixed sentence
         with st.expander('Original Fixed Sentence'):
-            st.write(fixed_sentence)
-        # All content of reponse
+            st.write(response)
+        # # All content of reponse
         # with st.expander('Whole Response'):
         #     st.write(response)
-    return print_lines
 
 
 # explain
 def getExplain(fixed_sentence):
     if session_state.submit_revise_query == "EN":
-        return getExplain_en(fixed_sentence)
+        getExplain_en(fixed_sentence)
     if session_state.submit_revise_query == "TN":
-        return getExplain_tn(fixed_sentence)
+        getExplain_tn(fixed_sentence)
     if session_state.submit_revise_query == "JP":
-        return getExplain_en(fixed_sentence)
-    
+        getExplain_en(fixed_sentence)
+
 def getExplain_en(fixed_sentence):
     # fixed_sentence = st.text_area('Fixed Sentence', f'{fixed_sentence}')
 
