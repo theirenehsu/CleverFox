@@ -1,6 +1,7 @@
 import re
 import subprocess
 import streamlit as st
+import os, sys
 
 # import pdfkit
 
@@ -126,7 +127,7 @@ def match_tokens_from_errant(original, correction):
                 revision = "{+" + cor_w + "+} " + "[-" + sli + "-]"
             # corrected_string[a:(b - 1)] = ""
             for x in range(a, b):
-                st.write(a, b, corrected_essay)
+                # st.write(a, b, corrected_essay)
                 corrected_essay[x] = ""
             corrected_essay[b - 1] = revision
         elif a == b:
@@ -262,6 +263,7 @@ def get_a_line(tokens, limit=68):
             line2 += ' ' + text_edit if len(line_pure_text) != 0 else text_edit
             line_pure_text += ' ' + text if len(line_pure_text) != 0 else text
             blank = ' ' * (limit - len(line_pure_text))
+            print("i == 0, tokens len: ", token_len)
             return [line1 + blank, line2 + blank, []]
         elif len(line_pure_text) + word_len <= limit and (i != len(tokens) - 1):
             line1 += ' ' + text_original if len(line_pure_text) != 0 else text_original
@@ -275,15 +277,27 @@ def get_a_line(tokens, limit=68):
 
 def print_double_space(fixed_sentence):
     printed_lines = """"""
-    with st.container():
-        sent_tokens = diff_tokens(fixed_sentence)
-        while sent_tokens:
-            return_data = get_a_line(sent_tokens)
-            # lines = [return_data[0].replace(' ', '&nbsp;'), return_data[1].replace(' ', '&nbsp;')]
-            printed_lines += return_data[0] + '<br>' + return_data[1] + '<br><hr class="dashed">'
-            sent_tokens = return_data[2]
-            print(return_data[2])
+    sent_tokens = diff_tokens(fixed_sentence)
+    while sent_tokens:
+        return_data = get_a_line(sent_tokens)
+        # lines = [return_data[0].replace(' ', '&nbsp;'), return_data[1].replace(' ', '&nbsp;')]
+        printed_lines += return_data[0] + '<br>' + return_data[1] + '<br><hr class="dashed">'
+        sent_tokens = return_data[2]
+        # print(return_data[2])
     st.markdown('<div class="fixed">' + printed_lines + '</div>', unsafe_allow_html=True)
+
+
+def delete_previous_revised_essay():
+    if os.path.exists("original.txt"):
+        os.remove("original.txt")
+        st.write("remove original")
+    if os.path.exists("correction.txt"):
+        os.remove("correction.txt")
+        st.write("remove correction.txt")
+        # print("removed correction")
+    if os.path.exists("diff.txt"):
+        os.remove("diff.txt")
+        st.write("reomve diff")
 
 
 def download_pdf(result):
