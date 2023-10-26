@@ -2,7 +2,6 @@ import openai
 import streamlit as st
 from format import (
     delete_previous_revised_essay,
-    match_tokens_from_errant,
     print_double_space,
     submit_button,
     show_result,

@@ -1,7 +1,6 @@
 import openai
 import streamlit as st
 from format import (
-    match_tokens_from_errant,
     print_double_space,
     submit_button,
     show_result,
@@ -99,7 +98,7 @@ def choice(text, level):
     # result
     if check:
         # Get ChatGPT answer
-        res = response['choices'][0]['message']['content']
+        res = response["choices"][0]["message"]["content"]
         fixed_sentence = res
         # Using errant to compare and produce edited articale
         # fixed_sentence = match_tokens_from_errant(text, response)

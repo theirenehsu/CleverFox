@@ -1,14 +1,14 @@
 import openai
 import streamlit as st
-from format import match_tokens_from_errant, print_double_space, submit_button, show_result
+from format import print_double_space, submit_button, show_result
 from streamlit import session_state
 
 functions_file_path = "./rhetorical_functions_few.txt"
-with open(functions_file_path, 'r') as functions_file:
+with open(functions_file_path, "r") as functions_file:
     rhetorical_functions_few = functions_file.read()
 
 CoT_Example_path = "./CoT_Example.txt"
-with open(CoT_Example_path, 'r') as CoT_Example_file:
+with open(CoT_Example_path, "r") as CoT_Example_file:
     CoT_Example = CoT_Example_file.read()
 
 
@@ -31,7 +31,7 @@ Notice:
     # 表格格式
     CONTENT_table = """Make a table, which containing the sentence number, sentence, phrase, and rhetorical function.
 Notice:
-    1. The table should have 4 columns: Sentence Number, Sentence, Phrase, Rhetorical Function. 
+    1. The table should have 4 columns: Sentence Number, Sentence, Phrase, Rhetorical Function.
     2. The rhetorical Function content should be written as "<Alphabet>. <Big Title of Function>".
     3. Put all sentences in the table. If a sentence has no phrase realizing rhetorical functions, leave the phrase and rhetorical function columns blank.
 """
@@ -118,17 +118,17 @@ Output:
     # model="gpt-3.5-turbo"
 
     messages_1 = [
-        {'role': 'user', 'content': CONTENT_linguist},
-        {'role': 'user', 'content': CONTENT_functions},
-        {'role': 'user', 'content': CONTENT_identify},
-        {'role': 'user', 'content': CONTENT_table},
+        {"role": "user", "content": CONTENT_linguist},
+        {"role": "user", "content": CONTENT_functions},
+        {"role": "user", "content": CONTENT_identify},
+        {"role": "user", "content": CONTENT_table},
         # {'role': 'user', 'content': CONTENT_output},
-        {'role': 'user', 'content': CONTENT_step_by_step},
-        {'role': 'user', 'content': CONTENT_CoT_Example},
-        {'role': 'user', 'content': CONTENT_test_article},
+        {"role": "user", "content": CONTENT_step_by_step},
+        {"role": "user", "content": CONTENT_CoT_Example},
+        {"role": "user", "content": CONTENT_test_article},
     ]
 
-    st.subheader('**Classification of Rhetorical**')
+    st.subheader("**Classification of Rhetorical**")
 
     write_rhetorical_functions()
 
@@ -137,7 +137,7 @@ Output:
     submit_prompt = st.button(submit_msg[session_state.submit_revise_query])
     result = show_result()
     st.subheader(result[session_state.submit_revise_query])
-    print_lines = ''''''
+    print_lines = """"""
     # result
     if submit_prompt:
         # Get ChatGPT answer
@@ -147,7 +147,7 @@ Output:
             temperature=0.7,
             # max_tokens=1000
         )
-        response_table = response_1['choices'][0]['message']['content']
+        response_table = response_1["choices"][0]["message"]["content"]
 
         fixed_sentence = getfixedsentence(article_content, response_table)
 
@@ -180,7 +180,7 @@ def write_rhetorical_functions():
     functions_file_path = "./rhetorical_functions.txt"
 
     with st.expander("Rhetorical Function", expanded=True):
-        functions_file = open(functions_file_path, 'r')
+        functions_file = open(functions_file_path, "r")
         for sentence in functions_file:
             st.write(sentence)
 
@@ -192,7 +192,7 @@ def getfixedsentence(article_content, response_table):
     CONTENT_Convert = """Do the following:
 Converts a article with a table which containing the sentence number, sentence, phrase, and rhetorical function into a article with phrase in square brackets and rhetorical functions in curly brackets:
 Notice:
-    1. The table have 4 columns: Sentence Number, Sentence, Phrase, Rhetorical Function. 
+    1. The table have 4 columns: Sentence Number, Sentence, Phrase, Rhetorical Function.
     2. Mark each phrase with square brackets (i.e., "[-", "-]"), and insert the corresponding rhetorical function with curly brackets  (i.e., "{{+", "+}}") right before each phrase.
 """
     # 思考鏈範例
@@ -239,10 +239,10 @@ Output:
     # model="gpt-3.5-turbo"
 
     messages_2 = [
-        {'role': 'user', 'content': CONTENT_Assistant},
-        {'role': 'user', 'content': CONTENT_Convert},
-        {'role': 'user', 'content': CONTENT_Convert_CoT_Example},
-        {'role': 'user', 'content': CONTENT_Convert_test_article},
+        {"role": "user", "content": CONTENT_Assistant},
+        {"role": "user", "content": CONTENT_Convert},
+        {"role": "user", "content": CONTENT_Convert_CoT_Example},
+        {"role": "user", "content": CONTENT_Convert_test_article},
     ]
 
     response_2 = openai.ChatCompletion.create(
@@ -252,6 +252,6 @@ Output:
         # max_tokens=1000
     )
 
-    fixed_sentence = response_2['choices'][0]['message']['content']
+    fixed_sentence = response_2["choices"][0]["message"]["content"]
 
     return fixed_sentence
