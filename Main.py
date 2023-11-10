@@ -27,7 +27,7 @@ def main():
         st.title("🦊 I'd Rather Be a CleverFox")
     with col2:
         # Change language of the website
-        language = session_state.submit_revise_query = st.radio('', ["EN", "TN", "JP"], horizontal=True)
+        language = session_state.submit_revise_query = st.radio('Language', ["EN", "TN", "JP"], horizontal=True)
 
     # Import OpenAI API key
     input_key = st.secrets["api_key"]
@@ -115,7 +115,7 @@ def main():
             "TN": "轉折語分析",
             "JP": "転折句の分析",
         }
-        revise_topic = st.radio("", [grammar[language], word_level_up[language], rhetorical_analysis[language]])
+        revise_topic = st.radio("select one of them", [grammar[language], word_level_up[language], rhetorical_analysis[language]])
 
     # output edited article
     if not text:
