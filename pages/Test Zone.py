@@ -4,7 +4,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from streamlit import session_state
 from Main import original_content
-from format import web_info
+from format import web_info, submit_button
 
 
 # Test Content
@@ -133,7 +133,6 @@ def temp():
 
 
 web_info()
-language = session_state.submit_revise_query
 title_msg = {
     "EN": "🦊 Test Zone",
     "TN": "🦊 測驗區",
@@ -141,14 +140,51 @@ title_msg = {
 }
 sub_msg = {
     "EN": "What type of questions or topics would you like to practice today? Please click to start!(ﾉ>ω<)ﾉ",
-    "TN": "今天想要練習什麼類型的題目呢？點擊馬上開始吧(ﾉ>ω<)ﾉ",
-    "JP": "今日、どのタイプの問題を練習したいですか？開始をクリックしてください。",
+    "TN": "今天想要練習什麼類型的題目呢？點擊馬上開始吧！(ﾉ>ω<)ﾉ",
+    "JP": "今日、どのタイプの問題を練習したいですか？開始をクリックしてください。ﾉ>ω<)ﾉ",
 }
-st.title(title_msg[language])
-st.text(sub_msg[language])
+st.title(title_msg[session_state.submit_revise_query])
+st.text(sub_msg[session_state.submit_revise_query])
 st.divider()
 
-show_add_question = st.button(" ▶ Tap to open or close Teacher Setup Area ")
+setup_exp = {
+    "EN": " ▶ Tap to open or close Teacher Setup Area ",
+    "TN": " ▶ 點擊收放教師設定區 ",
+    "JP": " ▶ 教師設定エリアを展開するにはクリックしてください ",
+}
+setup_submsg = {
+    "EN": "Teacher Setup Area",
+    "TN": "教師設定區",
+    "JP": "教師設定エリア",
+}
+setup_msg = {
+    "EN": "Hello, teacher! You can add topics you want students to practice right here.",
+    "TN": "老師好！此處可以新增您想讓學生練習的題目",
+    "JP": "老師こんにちは！ここで、学生に練習させたい問題を追加できます。",
+}
+setup_select = {
+    "EN": "##### Types of the topic",
+    "TN": "##### 題目類別",
+    "JP": "##### 問題のカテゴリ",
+}
+setup_op = {
+    "EN": ("Short Sentence Practice",
+            "Long Passage Practice",
+            "Add new types",),
+    "TN": ('短句練習',
+            '長篇練習',
+            '新增類別',),
+    "JP": ('アカデミック ライティング',
+            'ロング パッセージの練習',
+            'カテゴリを追加',),
+}
+setup_input = {
+    "EN": "##### question descriptions",
+    "TN": "##### 題目敘述",
+    "JP": "##### 問題の説明",
+}
+
+show_add_question = st.button(setup_exp[session_state.submit_revise_query])
 if "show_add_question" not in st.session_state:
     st.session_state.show_add_question = False
 if show_add_question:
@@ -156,23 +192,15 @@ if show_add_question:
     st.session_state.something = ""
 
 if st.session_state.show_add_question:
-    st.subheader("Teacher Setup Area")
+    st.subheader(setup_submsg[session_state.submit_revise_query])
 
-    st.markdown(
-        "Hello, teacher! You can add topics you want students to practice right here."
-    )
+    st.markdown(setup_msg[session_state.submit_revise_query])
 
-    st.selectbox(
-        "##### Types of the topic",
-        (
-            "Short Sentence Practice",
-            "Long Passage Practice",
-            "Add new types",
-        ),
-    )
+    st.selectbox(setup_select[session_state.submit_revise_query], setup_op[session_state.submit_revise_query])
 
-    st.text_input("##### question descriptions", "")
-    st.button("submit")
+    st.text_input(setup_input[session_state.submit_revise_query], "")
+    submit_msg = submit_button()
+    st.button(submit_msg[session_state.submit_revise_query])
 
     st.divider()
 
@@ -234,24 +262,24 @@ head3_test2 = {
 
 # right page:test content
 with col1:
-    st.subheader(test_head1[language])
+    st.subheader(test_head1[session_state.submit_revise_query])
     # Test Types Button
     # with st.container():
-    if st.button(head1_test1[language], key="translation_btn"):
+    if st.button(head1_test1[session_state.submit_revise_query], key="translation_btn"):
         test_translation()
-    if st.button(head1_test2[language], key="essay_btn"):
+    if st.button(head1_test2[session_state.submit_revise_query], key="essay_btn"):
         test_essay()
 
-    st.subheader(test_head2[language])
-    if st.button(head2_test1[language], key="academic_writing_btn"):
+    st.subheader(test_head2[session_state.submit_revise_query])
+    if st.button(head2_test1[session_state.submit_revise_query], key="academic_writing_btn"):
         test_academic()
-    if st.button(head2_test2[language], key="general_writing_btn"):
+    if st.button(head2_test2[session_state.submit_revise_query], key="general_writing_btn"):
         test_general()
 
-    st.subheader(test_head3[language])
-    if st.button(head3_test1[language], key="short_writing_btn"):
+    st.subheader(test_head3[session_state.submit_revise_query])
+    if st.button(head3_test1[session_state.submit_revise_query], key="short_writing_btn"):
         test_short()
-    if st.button(head3_test2[language], key="long_writing_btn"):
+    if st.button(head3_test2[session_state.submit_revise_query], key="long_writing_btn"):
         test_long()
 
 # left page：button
